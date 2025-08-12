@@ -1,9 +1,15 @@
-import Image from "next/image";
+import About from "@/components/About";
+import HeroSection from "@/components/HeroSection";
+import Services from "@/components/Services";
+import WhyUs from "@/components/WhyUs";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Pachimond Attorneys Let's Cook
-    </main>
+    <div >
+      <HeroSection/>
+      <About/>
+      <Services/>
+      <WhyUs/>
+    </div>
   );
 }
