@@ -1,6 +1,8 @@
 import About from "@/components/About";
+import FAQSection from "@/components/FAQSection";
 import HeroSection from "@/components/HeroSection";
 import Services from "@/components/Services";
+import TestimonialSection from "@/components/TestimonialSection";
 import WhyUs from "@/components/WhyUs";
 
 export default function Home() {
@@ -10,6 +12,8 @@ export default function Home() {
       <About/>
       <Services/>
       <WhyUs/>
+      <TestimonialSection/>
+      <FAQSection/>
     </div>
   );
 }
