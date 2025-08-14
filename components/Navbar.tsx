@@ -43,7 +43,10 @@ export default function Navbar() {
             </div>
 
             <div className="md:hidden">
-                <Menu onClick={toggleMenu} className="h-6 w-6 hover:cursor-pointer" />
+              <Menu
+                onClick={toggleMenu}
+                className="h-6 w-6 hover:cursor-pointer"
+              />
             </div>
           </div>
         </div>
@@ -63,17 +66,19 @@ export default function Navbar() {
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between p-4">
-          <div className="flex items-center">
-            <div className="m-2">
-              <Image width={73} height={73} alt="logo" src="/logo.png" />
-            </div>
+        <div className="flex items-start justify-between ">
+          <div className="p-4">
+            <Image
+              width={73}
+              height={73}
+              alt="logo"
+              src="/logo.png"
+            />
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={toggleMenu}
-            className="p-2"
           >
             <X className="h-5 w-5" />
           </Button>
