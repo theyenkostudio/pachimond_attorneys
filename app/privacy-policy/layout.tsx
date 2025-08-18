@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from "next";
 
-export const metaData: Metadata = {
+export const metadata: Metadata = {
   title: "Privacy Policy | Pachimond Attorneys",
   description: "About Pachimond Attorneys",
 };
