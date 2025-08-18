@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-export default function ManagingDirectorMsg() {
+export default function ManagingDirectorMsg({message}:{message: string}) {
   return (
     <section className="max-w-7xl mx-4 md:mx-auto my-10 md:my-12 lg:my-28">
       <div className="w-full bg-[#E8F5FDB2] rounded-xl p-8">
@@ -15,9 +15,7 @@ export default function ManagingDirectorMsg() {
             />
           </div>
           <p className="lg:max-w-3xl md:max-w-md text-center my-5 italic text-lg lg:text-xl">
-            Every case we take on is a promise — a promise to advocate fiercely,
-            think strategically, and stand with our clients through every
-            challenge. That’s the standard we uphold at Pachimond Attorneys.
+           {message}
           </p>
           <div className="flex gap-2 items-center">
             <div className="border rounded-full p-1 w-fit border-[#0C5380]">

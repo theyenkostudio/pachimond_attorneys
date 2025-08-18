@@ -4,7 +4,7 @@ import { blockContentType } from "./blockContentType";
 import { categoryType } from "./categoryType";
 import { postType } from "./postType";
 import { authorType } from "./authorType";
-import { heroSectionType } from "./heroSection";
+import { aboutSectionType } from "./aboutSection";
 import { serviceType } from "./service";
 import { testimonialType } from "./testimonial";
 import { faqType } from "./faq";
@@ -16,7 +16,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     categoryType,
     postType,
     authorType,
-    heroSectionType,
+    aboutSectionType,
     serviceType,
     testimonialType,
     faqType,
