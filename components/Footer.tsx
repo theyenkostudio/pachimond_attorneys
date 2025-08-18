@@ -64,7 +64,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Home
@@ -72,7 +72,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/about"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   About us
@@ -80,7 +80,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/contact"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Contact us
@@ -88,7 +88,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/blog"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Blog
@@ -103,7 +103,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/terms-of-use"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Terms
@@ -111,7 +111,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/privacy-policy"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Privacy policy
@@ -119,7 +119,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/legal-notice"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Legal notice

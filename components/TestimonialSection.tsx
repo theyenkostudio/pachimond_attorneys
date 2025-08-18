@@ -1,31 +1,12 @@
 import React from "react";
 import MobileCarousel from "./MobileCarousel";
 import TestimonialCard from "./TestimonialCard";
+import { getTestimonials } from "@/sanity/lib/server-api";
 
-export default function TestimonialSection() {
-  const testimonials = [
-    {
-      name: "Amarachi B.",
-      job_title: "Data Scientist",
-      message:
-        "The firm handled my case with professionalism and care. I always felt informed and confident in their strategy.",
-      img: "/testimonials/amarachi.jpg",
-    },
-    {
-      name: "Chinedu T.",
-      job_title: "Civil servant",
-      message:
-        "They didn’t just provide legal advice, They became my advocate when I needed it most. Highly recommended!",
-      img: "/testimonials/chinedu.jpg",
-    },
-    {
-      name: "Aisha Hamzat A.",
-      job_title: "Civil servant",
-      message:
-        "Exceptional service from start to finish. Their attention to detail and client care made all the difference.",
-      img: "/testimonials/aisha.jpg",
-    },
-  ];
+export default async function TestimonialSection() {
+  const testimonials = await getTestimonials()
+  console.log(testimonials)
+
   return (
     <section>
       <div className="max-w-7xl mx-auto">
@@ -40,13 +21,13 @@ export default function TestimonialSection() {
             </div>
             {/* Large tabs and PCs section */}
             <div className="hidden lg:grid lg:grid-cols-3 lg:gap-10">
-              {testimonials.map((testimonial, i) => (
+              {testimonials.map((testimonial:{imageUrl:string; name:string; text:string; title:string}, i:number) => (
                 <TestimonialCard
                   key={i}
-                  img={testimonial.img}
+                  image={testimonial.imageUrl}
                   name={testimonial.name}
-                  message={testimonial.message}
-                  job_title={testimonial.job_title}
+                  text={testimonial.text}
+                  title={testimonial.title}
                 />
               ))}
             </div>
