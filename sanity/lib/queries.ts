@@ -21,7 +21,7 @@ export const blogPostsQuery = groq`
   title,
   "slug": slug.current,
   publishedAt,
-  "excerpt": pt::text(body)[0..200], 
+"excerpt": (body)[0].children[0].text, 
   categories[]->{
     title
   },
@@ -43,7 +43,6 @@ export const singleBlogPostQuery = groq`
     title,
     "slug": slug.current,
     publishedAt,
-    "excerpt": pt::text(body)[0..200],
     author->{
       name,
       role,
