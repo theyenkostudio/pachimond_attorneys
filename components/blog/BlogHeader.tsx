@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {MoveUpRight} from "lucide-react";
+import { formatDate } from "@/utils/formatDate";
 
 type BlogHeaderProps = {
   title: string;
@@ -10,6 +11,7 @@ type BlogHeaderProps = {
   timePosted: string;
   excerpt: string;
   imageUrl: string;
+  link:string
 };
 
 export default function BlogHeader({
@@ -19,7 +21,11 @@ export default function BlogHeader({
   timePosted,
   excerpt,
   imageUrl,
+  link
 }: BlogHeaderProps) {
+    const truncatedExcerpt =
+    excerpt.length > 400 ? excerpt.slice(0, 400).trim() + "…" : excerpt;
+
   return (
     <div>
       <div className="relative w-full h-96 lg:h-[400px] xl:h-[610px] mb-3">
@@ -33,11 +39,11 @@ export default function BlogHeader({
       <div>
         <h3 className="font-bold text-2xl md:text-3xl lg:text-4xl">{title}</h3>
         <p className="text-[#6E6E6E] text-sm mt-2 mb-5">
-          {author} - {jobTitle} | {timePosted}
+          {author} - {jobTitle} | {formatDate(timePosted)}
         </p>
       </div>
-      <p className="mb-2 text-sm">{excerpt}</p>
-      <Link href='' className="text-[#093F61] flex items-center gap-1 font-bold">Read more <MoveUpRight/></Link>
+      <p className="mb-2 text-sm">{truncatedExcerpt}</p>
+      <Link href={`/blog/${link}`} className="text-[#093F61] flex items-center gap-1 font-bold">Read more <MoveUpRight/></Link>
 
     </div>
   );

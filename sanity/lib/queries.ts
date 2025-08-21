@@ -22,7 +22,7 @@ export const blogPostsQuery = groq`
   "slug": slug.current,
   publishedAt,
 "excerpt": (body)[0].children[0].text, 
-  categories[]->{
+  categories[0]->{
     title
   },
   author->{
@@ -35,6 +35,28 @@ export const blogPostsQuery = groq`
     alt
   }
 }
+`;
+
+export const otherPostsQuery = groq`
+  *[_type == "post" && slug.current != $slug] | order(publishedAt desc)[0...4] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    "excerpt": (body)[0].children[0].text, 
+   categories[]->{
+    title
+  },
+  author->{
+    name,
+    role,
+    "image": image.asset->url
+  },
+  mainImage{
+    "url": asset->url,
+    alt
+  }
+  }
 `;
 
 export const singleBlogPostQuery = groq`
