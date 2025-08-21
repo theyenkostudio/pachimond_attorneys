@@ -24,7 +24,7 @@ export default function BlogHeader({
   link
 }: BlogHeaderProps) {
     const truncatedExcerpt =
-    excerpt.length > 400 ? excerpt.slice(0, 400).trim() + "…" : excerpt;
+    excerpt.length > 500 ? excerpt.slice(0, 500).trim() + "…" : excerpt;
 
   return (
     <div>

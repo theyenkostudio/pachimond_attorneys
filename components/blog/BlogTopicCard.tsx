@@ -19,7 +19,7 @@ export default function BlogTopicCard({
   link,
 }: BlogTopicCardProps) {
   const truncatedExcerpt =
-    excerpt.length > 200 ? excerpt.slice(0, 200).trim() + "…" : excerpt;
+    excerpt.length > 500 ? excerpt.slice(0, 500).trim() + "…" : excerpt;
 
   return (
     <div className="lg:grid lg:grid-cols-8">

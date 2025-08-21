@@ -3,8 +3,11 @@ import {
   aboutQuery, 
   blogPostsQuery, 
   faqQuery, 
+  legalQuery, 
   otherPostsQuery, 
+  privacyQuery, 
   singleBlogPostQuery,
+  termsQuery,
   testimonialsQuery,
 } from './queries'
 import { cache } from 'react'
@@ -18,6 +21,12 @@ export const getOtherPosts = cache((slug:string)=> serverClient.fetch(otherPosts
 export const getFaqs = cache(() => serverClient.fetch(faqQuery))
 
 export const getTestimonials = cache(()=> serverClient.fetch(testimonialsQuery))
+
+export const getLegal = cache(() => serverClient.fetch(legalQuery))
+
+export const getTerms = cache(() => serverClient.fetch(termsQuery))
+
+export const getPrivacy = cache(() => serverClient.fetch(privacyQuery))
 
 export const getBlogPost = cache((slug: string) => 
   serverClient.fetch(singleBlogPostQuery, { slug })

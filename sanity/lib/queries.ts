@@ -105,3 +105,31 @@ export const faqQuery = groq`
     answer
   }
 `;
+
+// Legal
+export const legalQuery = groq`
+  *[_type == "legal"] | order(_createdAt asc) {
+    _id,
+    title,
+    content
+  }
+`;
+
+// Privacy
+export const privacyQuery = groq`
+  *[_type == "privacy"] | order(_createdAt asc) {
+    _id,
+    title,
+    content
+  }
+`;
+
+// Terms
+export const termsQuery = groq`
+  *[_type == "terms"] | order(_createdAt asc) {
+    _id,
+    title,
+    content
+  }
+`;
+
