@@ -5,50 +5,65 @@ import BlogTopics from "@/components/blog/BlogTopics";
 import { getBlogPosts } from "@/sanity/lib/server-api";
 
 export default async function BlogHome() {
-  const posts = await getBlogPosts()
-  console.log(posts[0].excerpt)
-  const headerPost = posts[0]
+  const posts = await getBlogPosts();
+
+  if (!posts || posts.length === 0) {
+    return <p className="text-center mt-10">No blog posts available.</p>;
+  }
+
+  const headerPost = posts[0];
+  const trendingPosts = posts.slice(1, 3);
+  const topicPosts = posts.slice(3);
+
   return (
     <section className="max-w-7xl mx-auto">
       <div className="mx-4">
+        {/* Header post */}
         <BlogHeader
           title={headerPost.title}
           author={headerPost.author.name}
-          timePosted={"11:00am "}
+          timePosted={headerPost.publishedAt}
           excerpt={headerPost.excerpt}
           imageUrl={headerPost.mainImage.url}
           jobTitle={headerPost.author.role}
+          link={headerPost.slug}
         />
-        <div className="mt-10">
-          <h3 className="font-bold text-2xl md:text-3xl lg:text-4xl">
-            Trending
-          </h3>
-          <div className="mt-3 space-y-5">
-            <TrendingCard
-              title={
-                "How Businesses Can Safeguard Intellectual Property in the Digital Age"
-              }
-              author={"Amaka Eze"}
-              timePosted={"10:30pm"}
-              imageUrl={"/trending-img.jpg"}
-              excerpt={
-                "As the digital economy grows, so does the risk of unauthorized use, copying, and theft of creative assets. From brand logos and product designs to software and online content, intellectual property is increasingly under threat — and too many businesses only act after damage has been done"
-              }
-            />
-            <TrendingCard
-              title={
-                "How Businesses Can Safeguard Intellectual Property in the Digital Age"
-              }
-              author={"Amaka Eze"}
-              timePosted={"10:30pm"}
-              imageUrl={"/trending-img.jpg"}
-              excerpt={
-                "As the digital economy grows, so does the risk of unauthorized use, copying, and theft of creative assets. From brand logos and product designs to software and online content, intellectual property is increasingly under threat — and too many businesses only act after damage has been done"
-              }
-            />
+
+        {/* Trending */}
+        {trendingPosts.length > 0 && (
+          <div className="my-10">
+            <h3 className="font-bold text-2xl md:text-3xl lg:text-4xl">
+              Trending
+            </h3>
+            <div className="mt-3 space-y-5">
+              {trendingPosts.map(
+                (post: {
+                  title: string;
+                  mainImage: { url: string };
+                  excerpt: string;
+                  subject: string;
+                  slug: string;
+                  publishedAt: string;
+                  author: { name: string, image: string };
+                }) => (
+                  <TrendingCard
+                    key={post.slug}
+                    title={post.title}
+                    author={post.author.name}
+                    timePosted={post.publishedAt}
+                    imageUrl={post.mainImage.url}
+                    authorImageUrl={post.author.image}
+                    excerpt={post.excerpt}
+                    slug={post.slug}
+                  />
+                )
+              )}
+            </div>
           </div>
-          <BlogTopics/>
-        </div>
+        )}
+
+        {/* Topics */}
+        {topicPosts.length > 0 && <BlogTopics posts={topicPosts} />}
       </div>
     </section>
   );

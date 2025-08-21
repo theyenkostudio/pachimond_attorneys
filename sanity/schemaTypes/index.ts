@@ -9,6 +9,9 @@ import { serviceType } from "./service";
 import { testimonialType } from "./testimonial";
 import { faqType } from "./faq";
 import { teamMemberType } from "./teamMember";
+import { legalType } from "./legal";
+import { privacyType } from "./privacy";
+import { termsType } from "./terms";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -21,5 +24,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     testimonialType,
     faqType,
     teamMemberType,
+    legalType,
+    privacyType,
+    termsType
   ],
 };

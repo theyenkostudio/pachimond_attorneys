@@ -5,7 +5,6 @@ import { getTestimonials } from "@/sanity/lib/server-api";
 
 export default async function TestimonialSection() {
   const testimonials = await getTestimonials()
-  console.log(testimonials)
 
   return (
     <section>
