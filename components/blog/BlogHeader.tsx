@@ -43,7 +43,7 @@ export default function BlogHeader({
         </p>
       </div>
       <p className="mb-2 text-sm">{truncatedExcerpt}</p>
-      <Link href={`/blog/${link}`} className="text-[#093F61] flex items-center gap-1 font-bold">Read more <MoveUpRight/></Link>
+      <Link href={`/blog/${link}`} className="text-[#093F61] flex items-center gap-1 font-bold">Read more <MoveUpRight height={16} /></Link>
 
     </div>
   );
