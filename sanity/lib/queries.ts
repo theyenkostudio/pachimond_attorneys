@@ -16,6 +16,16 @@ export const aboutQuery = groq`
   }
 `;
 
+export const footerDetails = groq`
+  *[_type == "about"][0]{
+    phone,
+    email,
+    location,
+    facebook,
+    instagram,
+    twitter
+  }`
+
 export const blogPostsQuery = groq`
 *[_type == "post"] | order(publishedAt desc) {
   title,

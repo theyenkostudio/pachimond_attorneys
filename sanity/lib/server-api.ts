@@ -9,10 +9,13 @@ import {
   singleBlogPostQuery,
   termsQuery,
   testimonialsQuery,
+  footerDetails
 } from './queries'
 import { cache } from 'react'
 
 export const getAbout = cache(() => serverClient.fetch(aboutQuery))
+
+export const getFooterDetails = cache(() => serverClient.fetch(footerDetails))
 
 export const getBlogPosts = cache(() => serverClient.fetch(blogPostsQuery))
 
