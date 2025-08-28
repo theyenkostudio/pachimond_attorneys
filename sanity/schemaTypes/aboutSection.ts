@@ -14,8 +14,38 @@ export const aboutSectionType = defineType({
       rows: 3,
     }),
     defineField({
+      name: "email",
+      type: "string",
+      title: "Company Email",
+    }),
+    defineField({
+      name: "phone",
+      type: "string",
+      title: "Company Phone Number",
+    }),
+    defineField({
+      name: "location",
+      type: "string",
+      title: "Company Location",
+    }),
+    defineField({
+      name: "facebook",
+      type: "string",
+      title: "Facebook URL",
+    }),
+    defineField({
+      name: "instagram",
+      type: "string",
+      title: "Instagram URL",
+    }),
+    defineField({
+      name: "twitter",
+      type: "string",
+      title: "X(Twitter) URL",
+    }),
+    defineField({
       name: "message",
-      type: "text",
+      type: "string",
       title: "Message from Founder",
     }),
     defineField({

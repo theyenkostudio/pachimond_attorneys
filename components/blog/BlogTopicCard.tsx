@@ -43,7 +43,7 @@ export default function BlogTopicCard({
           href={`/blog/${link}`}
           className="text-[#093F61] text-sm flex items-center gap-1 font-bold"
         >
-          Read more <MoveUpRight />
+          Read more <MoveUpRight height={16} />
         </Link>
       </div>
     </div>

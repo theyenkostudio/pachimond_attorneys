@@ -19,15 +19,16 @@ export default function About() {
   ];
   return (
     <section className="max-w-7xl mx-auto my-14 md:my-32">
-      <div className="lg:flex lg:gap-4">
-        <Image
-          src="/about.jpg"
-          height={404}
-          width={483}
-          alt="about"
-          className="rounded-xl lg:rounded-3xl object-cover"
-        />
-        <div className="mx-4 flex flex-col justify-between mt-5 lg:mt-0">
+      <div className="lg:flex lg:gap-4 mx-4">
+        <div className="relative w-full h-[350px] lg:w-[483px] lg:h-[404px]">
+          <Image
+            src="/about.jpg"
+            fill
+            alt="about"
+            className="rounded-xl lg:rounded-3xl object-cover"
+          />
+        </div>
+        <div className="flex flex-col justify-between mt-5 lg:mt-0">
           <div>
             <p className="font-bold text-2xl md:text-3xl lg:text-4xl">
               More than representation,

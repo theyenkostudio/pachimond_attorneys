@@ -1,7 +1,19 @@
-import { Facebook, Instagram } from "lucide-react";
+import { getFooterDetails } from "@/sanity/lib/server-api";
 import Image from "next/image";
+import Link from "next/link";
 
-export function Footer() {
+export async function Footer() {
+  const footerDetails = await getFooterDetails()
+  console.log(footerDetails)
+
+  const fallBackDetails = {
+    phone: "+234 XXX - XX -XXX",
+    email: "pachimondattorneys@gmail.com",
+    location: "Port Harcourt, Nigeria",
+    facebook: "",
+    instagram: "",
+    twitter: "",}
+
   return (
     <footer
       className="bg-[#101010] text-white py-12 relative overflow-hidden"
@@ -28,6 +40,7 @@ export function Footer() {
               Providing trusted legal solutions with integrity and dedication.
             </p>
             <div className="flex space-x-3">
+            <Link href={footerDetails.facebook || fallBackDetails.facebook || "#"} target="_blank">
               <div className="p-1 border border-[#009CFF] rounded-full hover:cursor-pointer">
                 <Image
                   height={24}
@@ -36,7 +49,8 @@ export function Footer() {
                   src="/icons/fb.png"
                   className="h-6 w-6 object-contain"
                 />
-              </div>
+              </div></Link>
+             <Link href={footerDetails.instagram || fallBackDetails.instagram || "#"} target="_blank">
               <div className="p-1 border border-[#009CFF] rounded-full hover:cursor-pointer">
                 <Image
                   height={24}
@@ -45,16 +59,18 @@ export function Footer() {
                   src="/icons/ig.png"
                   className="h-6 w-6 object-contain"
                 />
-              </div>
+              </div></Link>
+              <Link target="_blank" href={footerDetails.twitter || fallBackDetails.twitter || "#"}>
               <div className="p-1 border border-[#009CFF] rounded-full hover:cursor-pointer">
                 <Image
                   height={24}
                   width={24}
-                  alt="facebook-logo"
+                  alt="x-logo"
                   src="/icons/x.png"
                   className="h-6 w-6 object-contain"
                 />
               </div>
+              </Link>
             </div>
           </div>
 
@@ -63,36 +79,36 @@ export function Footer() {
             <h4 className="text-[#009CFF] font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a
+                <Link
                   href="/"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/about"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   About us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/contact"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Contact us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/blog"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -102,28 +118,28 @@ export function Footer() {
             <h4 className="text-[#009CFF] font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <a
+                <Link
                   href="/terms-of-use"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Terms
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/privacy-policy"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Privacy policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/legal-notice"
                   className="text-gray-300 hover:text-white transition-colors text-sm"
                 >
                   Legal notice
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -137,11 +153,11 @@ export function Footer() {
                   <Image
                     height={24}
                     width={24}
-                    alt="facebook-logo"
+                    alt="phone-icon"
                     src="/icons/call.png"
                     className="h-6 w-6 object-contain"
                   />{" "}
-                  <p>+234 XXX - XX -XXX</p>
+                  <p>{footerDetails.phone || fallBackDetails.phone}</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -149,11 +165,11 @@ export function Footer() {
                   <Image
                     height={24}
                     width={24}
-                    alt="facebook-logo"
+                    alt="location-icon"
                     src="/icons/location.png"
                     className="h-6 w-6 object-contain"
                   />{" "}
-                  <p>Port Harcourt, Nigeria</p>
+                  <p>{footerDetails.location || fallBackDetails.location}</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -161,11 +177,11 @@ export function Footer() {
                   <Image
                     height={24}
                     width={24}
-                    alt="facebook-logo"
+                    alt="email-icon"
                     src="/icons/sms.png"
                     className="h-6 w-6 object-contain"
                   />
-                  <p>pachimondattorneys@gmail.com</p>
+                  <Link target="_blank" href={`mailto:${footerDetails.email || fallBackDetails.email}`}> {footerDetails.email || fallBackDetails.email}</Link>
                 </div>
               </div>
             </div>

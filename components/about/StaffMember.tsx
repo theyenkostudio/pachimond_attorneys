@@ -14,8 +14,8 @@ export default function StaffMember({ name, job, image }: StaffMemberProps) {
         <Image src={image} alt={name} fill className="object-cover rounded-2xl" />
       </div>
 
-      <div className="mt-5">
-        <p className="lg:text-lg">{name}</p>
+      <div className="mt-1 lg:mt-3">
+        <p className="lg:text-lg font-bold">{name}</p>
         <p className="text-[#232323] text-sm">{job}</p>
       </div>
     </div>
