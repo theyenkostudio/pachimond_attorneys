@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export async function Footer() {
   const footerDetails = await getFooterDetails()
-  console.log(footerDetails)
 
   const fallBackDetails = {
     phone: "+234 XXX - XX -XXX",
@@ -193,6 +192,7 @@ export async function Footer() {
           <p className="text-center text-white text-sm">
             Copyright 2025 - Pachimond Attorneys - Nigeria, West Africa
           </p>
+          <p className="text-center text-sm mt-8 text-[#009CFF]">Designed and Built by <Link target="_blank" href="https://yenko.studio/" className=" underline">Yenko Studio</Link></p>
         </div>
       </div>
     </footer>
