@@ -1,10 +1,5 @@
 import React from "react";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Pachimond Attorneys | About Us",
-  description: "About Pachimond Attorneys",
-};
 
 export default function AboutLayout({
   children,

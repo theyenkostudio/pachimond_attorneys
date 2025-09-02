@@ -3,6 +3,12 @@ import TrendingCard from "@/components/blog/TrendingCard";
 import React from "react";
 import BlogTopics from "@/components/blog/BlogTopics";
 import { getBlogPosts } from "@/sanity/lib/server-api";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Our Blog',
+};
+
 
 export default async function BlogHome() {
   const posts = await getBlogPosts();

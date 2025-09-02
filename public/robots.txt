@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://pachimond-attorneys.vercel.app/
+
+# Sitemaps
+Sitemap: https://pachimond-attorneys.vercel.app/sitemap.xml
+Sitemap: https://pachimond-attorneys.vercel.app/api/sitemap
