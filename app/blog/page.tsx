@@ -11,15 +11,17 @@ export const metadata: Metadata = {
 
 
 export default async function BlogHome() {
-  const posts = await getBlogPosts();
+  const postsResp = await getBlogPosts();
+
+  const posts = postsResp?.data;
 
   if (!posts || posts.length === 0) {
     return <p className="text-center mt-10">No blog posts available.</p>;
   }
 
   const headerPost = posts[0];
-  const trendingPosts = posts.slice(1, 3);
-  const topicPosts = posts.slice(3);
+  const trendingPosts = posts?.slice(1, 3);
+  const topicPosts = posts?.slice(3);
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -42,7 +44,7 @@ export default async function BlogHome() {
               Trending
             </h3>
             <div className="mt-3 space-y-5">
-              {trendingPosts.map(
+              {trendingPosts?.map(
                 (post: {
                   title: string;
                   mainImage: { url: string };

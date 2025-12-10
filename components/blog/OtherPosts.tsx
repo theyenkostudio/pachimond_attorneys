@@ -13,7 +13,8 @@ type Post = {
 };
 
 export default async function OtherPosts({ slug }: { slug: string }) {
-  const otherPosts = await getOtherPosts(slug);
+  const otherPostsRes = await getOtherPosts(slug);
+  const otherPosts = otherPostsRes.data
   if (!otherPosts || otherPosts.length === 0) {
     return <div>No other posts available</div>;
   }
@@ -21,7 +22,7 @@ export default async function OtherPosts({ slug }: { slug: string }) {
     <div className="my-14">
       <h2 className="font-bold text-2xl md:text-3xl mt-12 mb-6">Blog topics</h2>
       <div className="space-y-3">
-        {otherPosts.map((post: Post, i: number) => (
+        {otherPosts?.map((post: Post, i: number) => (
           <BlogTopicCard
             link={post.slug}
             key={i}

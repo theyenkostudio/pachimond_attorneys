@@ -39,7 +39,7 @@ export async function Footer() {
               Providing trusted legal solutions with integrity and dedication.
             </p>
             <div className="flex space-x-3">
-            <Link href={footerDetails.facebook || fallBackDetails.facebook || "#"} target="_blank">
+            <Link href={footerDetails.data.facebook || fallBackDetails.facebook || "#"} target="_blank">
               <div className="p-1 border border-[#009CFF] rounded-full hover:cursor-pointer">
                 <Image
                   height={24}
@@ -49,7 +49,7 @@ export async function Footer() {
                   className="h-6 w-6 object-contain"
                 />
               </div></Link>
-             <Link href={footerDetails.instagram || fallBackDetails.instagram || "#"} target="_blank">
+             <Link href={footerDetails.data.instagram || fallBackDetails.instagram || "#"} target="_blank">
               <div className="p-1 border border-[#009CFF] rounded-full hover:cursor-pointer">
                 <Image
                   height={24}
@@ -59,7 +59,7 @@ export async function Footer() {
                   className="h-6 w-6 object-contain"
                 />
               </div></Link>
-              <Link target="_blank" href={footerDetails.twitter || fallBackDetails.twitter || "#"}>
+              <Link target="_blank" href={footerDetails.data.twitter || fallBackDetails.twitter || "#"}>
               <div className="p-1 border border-[#009CFF] rounded-full hover:cursor-pointer">
                 <Image
                   height={24}
@@ -156,7 +156,7 @@ export async function Footer() {
                     src="/icons/call.png"
                     className="h-6 w-6 object-contain"
                   />{" "}
-                  <p>{footerDetails.phone || fallBackDetails.phone}</p>
+                  <p>{footerDetails.data.phone || fallBackDetails.phone}</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -168,7 +168,7 @@ export async function Footer() {
                     src="/icons/location.png"
                     className="h-6 w-6 object-contain"
                   />{" "}
-                  <p>{footerDetails.location || fallBackDetails.location}</p>
+                  <p>{footerDetails.data.location || fallBackDetails.location}</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -180,7 +180,7 @@ export async function Footer() {
                     src="/icons/sms.png"
                     className="h-6 w-6 object-contain"
                   />
-                  <Link target="_blank" href={`mailto:${footerDetails.email || fallBackDetails.email}`}> {footerDetails.email || fallBackDetails.email}</Link>
+                  <Link target="_blank" href={`mailto:${footerDetails.data.email || fallBackDetails.email}`}> {footerDetails.data.email || fallBackDetails.email}</Link>
                 </div>
               </div>
             </div>

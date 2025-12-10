@@ -4,7 +4,8 @@ import HeadingAndText from "@/components/HeadingAndText";
 import { getPrivacy } from "@/sanity/lib/server-api";
 
 export default async function PrivacyPolicy() {
-  const content = await getPrivacy();
+  const contentRes = await getPrivacy();
+  const content = contentRes?.data
   return (
     <section className="max-w-7xl mx-auto">
       <div className="mx-4">

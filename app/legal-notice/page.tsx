@@ -4,7 +4,8 @@ import HeadingAndText from "@/components/HeadingAndText";
 import { getLegal } from "@/sanity/lib/server-api";
 
 export default async function LegalNotice() {
-  const content = await getLegal();
+  const contentRes = await getLegal();
+  const content = contentRes.data as unknown as any[];
   return (
     <section className="max-w-7xl mx-auto">
       <div className="mx-4">

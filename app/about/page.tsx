@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 
 
 export default async function About() {
-  const about = await getAbout()
+  const aboutRes = await getAbout()
+  const about = aboutRes.data;
   return (
     <div>
         <HeadingSection about={about.about} />

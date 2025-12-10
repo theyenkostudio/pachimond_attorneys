@@ -6,6 +6,8 @@ import { getTestimonials } from "@/sanity/lib/server-api";
 export default async function TestimonialSection() {
   const testimonials = await getTestimonials()
 
+
+
   return (
     <section>
       <div className="max-w-7xl mx-auto">
@@ -20,7 +22,7 @@ export default async function TestimonialSection() {
             </div>
             {/* Large tabs and PCs section */}
             <div className="hidden lg:grid lg:grid-cols-3 lg:gap-10">
-              {testimonials.map((testimonial:{imageUrl:string; name:string; text:string; title:string}, i:number) => (
+              {testimonials?.data?.map((testimonial:{imageUrl:string; name:string; text:string; title:string}, i:number) => (
                 <TestimonialCard
                   key={i}
                   image={testimonial.imageUrl}

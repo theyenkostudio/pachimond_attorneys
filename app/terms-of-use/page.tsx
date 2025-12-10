@@ -3,7 +3,8 @@ import HeadingAndText from "@/components/HeadingAndText";
 import { getTerms } from "@/sanity/lib/server-api";
 
 export default async function TermsOfUse() {
-  const content = await getTerms();
+  const contentRes = await getTerms();
+  const content = contentRes.data
 
   return (
     <section className="max-w-7xl mx-auto">

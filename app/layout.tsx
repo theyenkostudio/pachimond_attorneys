@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { QueryProvider } from "@/components/QueryProvider";
 import { Toaster } from "@/components/ui/sonner"
+import { SanityLive } from "@/sanity/lib/live";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -95,6 +96,7 @@ export default function RootLayout({
           <Toaster />
           <Navbar />
           {children}
+          <SanityLive />
           <Footer />
         </QueryProvider>
       </body>
