@@ -12,9 +12,12 @@ import {structureTool} from 'sanity/structure'
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schemaTypes'
 import {structure} from './sanity/structure'
+import { StudioLogo } from './components/StudioLogo'
 
 export default defineConfig({
   basePath: '/studio',
+  title: 'Pachimond Attorneys Studio',
+  icon: StudioLogo,
   projectId,
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
