@@ -190,7 +190,7 @@ export async function Footer() {
         {/* Copyright */}
         <div className="border-t border-gray-300 mt-8 pt-6">
           <p className="text-center text-white text-sm">
-            Copyright 2025 - Pachimond Attorneys - Nigeria, West Africa
+            Copyright {new Date().getFullYear()} - Pachimond Attorneys - Nigeria, West Africa
           </p>
           <p className="text-center text-sm mt-8 text-[#009CFF]">Designed and Built by <Link target="_blank" href="https://yenko.studio/" className=" underline">Yenko Studio</Link></p>
         </div>
