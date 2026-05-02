@@ -14,7 +14,7 @@ export default function ManagingDirectorMsg({message}:{message: string}) {
               className="object-contain"
             />
           </div>
-          <p className="lg:max-w-3xl md:max-w-md text-center my-5 italic text-lg lg:text-xl">
+          <p className="lg:max-w-3xl md:max-w-md text-center my-5 text-lg lg:text-xl">
            {message}
           </p>
           <div className="flex gap-2 items-center">

@@ -1,65 +1,59 @@
-import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import CustomCursor from "@/components/CustomCursor";
 import { Footer } from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { CursorProvider } from "@/components/providers/CursorContext";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { QueryProvider } from "@/components/QueryProvider";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 import { SanityLive } from "@/sanity/lib/live";
+import type { Metadata } from "next";
+import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
+import "./globals.css";
 
-const dmSans = DM_Sans({ subsets: ["latin"] });
-
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://pachimond-attorneys.vercel.app";
 
 export const metadata: Metadata = {
   title: {
     template: "%s | Pachimond Attorneys",
-    default: "Pachimond Attorneys",
+    default: "Pachimond Attorneys — Strategic Legal Counsel in Nigeria",
   },
-  description: "Pachimond Attorneys – Trusted legal advisors in Nigeria, providing expert counsel to individuals and businesses.",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  description:
+    "Pachimond Attorneys provides expert legal counsel to individuals and businesses in Nigeria — litigation, corporate law, commercial law, and IP law.",
   applicationName: "Pachimond Attorneys",
-  creator: "Pachimond Attorneys",
-  publisher: "Pachimond Attorneys",
+  metadataBase: new URL(siteUrl),
   keywords: [
     "Pachimond Attorneys",
     "Legal Services Nigeria",
     "Law Firm Nigeria",
-    "Corporate Law",
-    "Commercial Law",
-    "Litigation",
-    "Legal Advice",
-    "Nigeria Attorneys",
+    "Corporate Law Nigeria",
+    "Commercial Law Nigeria",
+    "Litigation Nigeria",
+    "IP Law Nigeria",
+    "Data Protection Nigeria",
+    "Legal Advice Lagos",
   ],
-  authors: [
-    {
-      name: "Pachimond Attorneys",
-      url: process.env.NEXT_PUBLIC_SITE_URL || "https://pachimond-attorneys.vercel.app",
-    },
-  ],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://pachimond-attorneys.vercel.app"),
+  authors: [{ name: "Pachimond Attorneys", url: siteUrl }],
+  creator: "Pachimond Attorneys",
+  publisher: "Pachimond Attorneys",
   robots: {
     index: true,
     follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-    },
+    googleBot: { index: true, follow: true, noimageindex: false },
   },
   openGraph: {
-    title: "Pachimond Attorneys",
-    description: "Expert legal services in Nigeria — Pachimond Attorneys provide trusted representation and counsel.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://pachimond-attorneys.vercel.app",
+    title: "Pachimond Attorneys — Strategic Legal Counsel in Nigeria",
+    description:
+      "Expert legal services in Nigeria — litigation, corporate, commercial, and IP law. Trusted by individuals and businesses.",
+    url: siteUrl,
     siteName: "Pachimond Attorneys",
     images: [
       {
-        url: "/logo.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Pachimond Attorneys Logo",
+        alt: "Pachimond Attorneys",
       },
     ],
     type: "website",
@@ -68,36 +62,40 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Pachimond Attorneys",
-    description: "Trusted legal services in Nigeria — corporate law, litigation, and more.",
-    images: ["/logo.png"],
+    description:
+      "Trusted legal services in Nigeria — corporate law, litigation, and more.",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 
-
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="icon" href="/favicon.ico" />
-
-      </head>
-      <body className={dmSans.className}>
+      <body className="font-sans">
         <QueryProvider>
-          <Toaster />
-          <Navbar />
-          {children}
-          <SanityLive />
-          <Footer />
+          <CursorProvider>
+          <CustomCursor />
+          <SmoothScrollProvider>
+            <Toaster />
+            <Navbar />
+            {children}
+            <SanityLive />
+            {(await draftMode()).isEnabled && <VisualEditing />}
+            <Footer />
+          </SmoothScrollProvider>
+          </CursorProvider>
         </QueryProvider>
       </body>
     </html>

@@ -5,15 +5,62 @@ import Services from "@/components/Services";
 import TestimonialSection from "@/components/TestimonialSection";
 import WhyUs from "@/components/WhyUs";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://pachimond-attorneys.vercel.app";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LegalService",
+      "@id": `${siteUrl}/#organization`,
+      name: "Pachimond Attorneys",
+      url: siteUrl,
+      logo: `${siteUrl}/logo.png`,
+      image: `${siteUrl}/hero-bg.jpg`,
+      description:
+        "Pachimond Attorneys provides expert legal counsel to individuals and businesses in Nigeria — litigation, corporate law, commercial law, and IP law.",
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "NG",
+        addressLocality: "Lagos",
+      },
+      areaServed: "NG",
+      serviceType: ["Litigation", "Corporate Law", "Commercial Law", "IP Law"],
+      sameAs: [],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Pachimond Attorneys",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      url: siteUrl,
+      name: "Pachimond Attorneys — Strategic Legal Counsel in Nigeria",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#organization` },
+    },
+  ],
+};
+
 export default function Home() {
   return (
-    <div >
-      <HeroSection/>
-      <About/>
-      <Services/>
-      <WhyUs/>
-      <TestimonialSection/>
-      <FAQSection/>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HeroSection />
+      {/* <PracticeAreas /> */}
+      <About />
+      <Services />
+      <WhyUs />
+      <TestimonialSection />
+      <FAQSection />
+    </>
   );
 }

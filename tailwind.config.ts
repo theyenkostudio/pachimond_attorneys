@@ -9,10 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        sans:     ["Space Grotesk", "sans-serif"],
+        display:  ["Cormorant Garamond", "serif"],
+        playfair: ["Playfair Display", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -20,6 +20,11 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        navy:  "#0D1B2A",
+        blue:  "#093F61",
+        gold:  "#B8973A",
+        cream: "#F5F3EF",
+        light: "#EEF2F6",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
