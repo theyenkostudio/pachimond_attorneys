@@ -1,19 +1,19 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, type Variants } from 'framer-motion'
 import { useRef, ReactNode } from 'react'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.21, 0.47, 0.32, 0.98] as const },
+    transition: { duration: 0.75, ease: [0.21, 0.47, 0.32, 0.98] },
   },
 }
 
