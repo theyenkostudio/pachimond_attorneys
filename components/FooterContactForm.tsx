@@ -71,7 +71,7 @@ export default function FooterContactForm() {
         </div>
 
         <motion.p
-          className="text-white/35 text-sm max-w-xs leading-relaxed font-sans-ui mt-6 lg:mt-0 shrink-0"
+          className="text-white/35 text-base max-w-xs leading-relaxed font-sans-ui mt-6 lg:mt-0 shrink-0"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -158,11 +158,14 @@ export default function FooterContactForm() {
         <div className="mt-12">
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            className="w-28 h-28 rounded-full border border-white/20 hover:border-gold text-white/45 hover:text-gold text-[9px] tracking-[0.28em] uppercase font-sans-ui flex items-center justify-center transition-colors duration-300"
+            className="group relative w-36 h-36 rounded-full border border-white/20 hover:border-gold overflow-hidden flex items-center justify-center transition-colors duration-300"
           >
-            Submit
+            <span className="absolute inset-0 bg-gold translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+            <span className="relative text-white/45 group-hover:text-white text-sm tracking-[0.2em] uppercase font-sans-ui transition-colors duration-300">
+              Submit
+            </span>
           </motion.button>
         </div>
       </motion.form>

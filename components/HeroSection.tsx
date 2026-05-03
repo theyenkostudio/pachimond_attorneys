@@ -46,7 +46,7 @@ export default function HeroSection() {
           </span>
         </div>
         <span className="text-white/40 text-[10px] tracking-[0.28em] uppercase font-sans-ui">
-          Est. 2018
+          Est. 2019
         </span>
       </motion.div>
 
@@ -91,7 +91,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
       >
-        <p className="text-white/50 text-lg max-w-sm leading-relaxed font-sans-ui">
+        <p className="text-white/50 text-lg font-semibold max-w-sm leading-relaxed font-sans-ui">
           We provide practical, results-driven legal support across litigation,
           corporate, commercial, and emerging areas such as data protection and
           cybersecurity.

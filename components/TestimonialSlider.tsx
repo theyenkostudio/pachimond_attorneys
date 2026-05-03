@@ -237,6 +237,16 @@ export default function TestimonialSlider({ testimonials }: { testimonials: Test
           </div>
         </motion.div>
 
+        {/* Mobile swipe hint */}
+        <motion.p
+          className="lg:hidden text-center text-[10px] tracking-[0.28em] uppercase font-sans-ui text-navy/30 mt-5"
+          animate={{ opacity: [0.3, 0.65, 0.3] }}
+          transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
+          aria-hidden
+        >
+          ← swipe →
+        </motion.p>
+
       </div>
     </motion.section>
   )

@@ -73,7 +73,7 @@ export default function WhyUs() {
           </div>
 
           <motion.p
-            className="text-navy/45 text-sm max-w-xs leading-relaxed font-sans-ui mt-6 lg:mt-0 shrink-0"
+            className="text-navy/45 text-base max-w-xs leading-relaxed font-sans-ui mt-6 lg:mt-0 shrink-0"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -106,7 +106,7 @@ export default function WhyUs() {
               <h3 className="text-navy font-bold text-xl lg:text-2xl mb-4 leading-tight tracking-[-0.01em] group-hover:text-gold transition-colors duration-300">
                 {reason.title}
               </h3>
-              <p className="text-navy/40 text-sm leading-relaxed font-sans-ui">
+              <p className="text-navy/40 text-base leading-relaxed font-sans-ui">
                 {reason.body}
               </p>
             </motion.div>

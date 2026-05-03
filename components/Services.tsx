@@ -92,7 +92,7 @@ export default function Services() {
           </div>
 
           <motion.p
-            className="text-navy/45 text-sm max-w-xs leading-relaxed font-sans-ui mt-6 lg:mt-0 shrink-0"
+            className="text-navy/45 text-base max-w-xs leading-relaxed font-sans-ui mt-6 lg:mt-0 shrink-0"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -177,7 +177,7 @@ export default function Services() {
               <AnimatePresence mode="wait">
                 <motion.p
                   key={active}
-                  className="text-navy/55 text-sm leading-relaxed font-sans-ui max-w-sm"
+                  className="text-navy/55 text-base leading-relaxed font-sans-ui max-w-sm"
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}

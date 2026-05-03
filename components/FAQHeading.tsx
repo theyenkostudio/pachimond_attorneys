@@ -46,7 +46,7 @@ export default function FAQHeading() {
       </div>
 
       <motion.p
-        className="text-navy/45 text-sm leading-relaxed max-w-xs font-sans-ui"
+        className="text-navy/45 text-base leading-relaxed max-w-xs font-sans-ui"
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
