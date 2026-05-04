@@ -56,7 +56,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HeroSection />
-      {/* <PracticeAreas /> */}
+
       <About />
       <Services />
       <WhyUs />

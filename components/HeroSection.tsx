@@ -13,7 +13,7 @@ const LINES = [
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden bg-navy">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-navy">
       {/* Background — Ken Burns slow zoom out */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -101,7 +101,7 @@ export default function HeroSection() {
 
       {/* Vertical scroll cue — right edge */}
       <motion.div
-        className="absolute right-6 bottom-10 flex flex-col items-center gap-3 z-10"
+        className="absolute right-6 bottom-10 md:flex hidden flex-col items-center gap-3 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.8 }}
