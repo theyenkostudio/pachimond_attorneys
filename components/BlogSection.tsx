@@ -89,9 +89,9 @@ export default async function BlogSection() {
                       })
                     : ''}
                 </p>
-                <span className="relative w-11 h-11 rounded-full border border-navy/20 overflow-hidden flex items-center justify-center shrink-0">
-                  <span className="absolute inset-0 bg-navy translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
-                  <ArrowUpRight className="relative h-3.5 w-3.5 text-navy/30 group-hover:text-white transition-colors duration-300" />
+                <span className="relative w-11 h-11 rounded-full border border-gold overflow-hidden flex items-center justify-center shrink-0">
+                  <span className="absolute inset-0 bg-gold -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                  <ArrowUpRight className="relative h-3.5 w-3.5 text-gold group-hover:text-white transition-colors duration-300" />
                 </span>
               </div>
             </Link>

@@ -3,6 +3,7 @@
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -13,14 +14,21 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const hasDarkHero = pathname === "/" || pathname.startsWith("/practice-areas");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!hasDarkHero) {
+      setScrolled(true);
+      return;
+    }
+    setScrolled(window.scrollY > 60);
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [hasDarkHero]);
 
   return (
     <>

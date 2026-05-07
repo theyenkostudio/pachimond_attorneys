@@ -2,49 +2,20 @@
 
 import { useState, useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
+import { practiceAreas } from '@/constants/practiceAreas'
 
 const HEADER_LINES = ['When the stakes', 'are high,', 'we deliver.']
 
-const services = [
-  {
-    number: '01',
-    title: 'Litigation',
-    description: 'Representation in civil and commercial disputes, with a focus on achieving practical and efficient outcomes.',
-    image: '/services/litigation.jpg',
-  },
-  {
-    number: '02',
-    title: 'Corporate Law',
-    description: 'Advisory on company formation, governance, compliance, and regulatory matters.',
-    image: '/services/corporate.jpg',
-  },
-  {
-    number: '03',
-    title: 'Commercial Law',
-    description: 'Structuring, reviewing, and advising on business transactions and agreements.',
-    image: '/services/commercial.jpg',
-  },
-  {
-    number: '04',
-    title: 'Intellectual Property',
-    description: 'Protection of trademarks, copyrights, and other proprietary rights.',
-    image: '/services/ip.jpg',
-  },
-  {
-    number: '05',
-    title: 'Ethics & Professional Responsibility',
-    description: 'Advisory on ethical compliance, professional standards, and best practices in legal and corporate environments.',
-    image: '/services/corporate.jpg',
-  },
-  {
-    number: '06',
-    title: 'Data Protection & Cybersecurity',
-    description: 'Guidance on data privacy, regulatory compliance, and risk management in an increasingly digital environment.',
-    image: '/services/ip.jpg',
-  },
-]
+const services = practiceAreas.map(a => ({
+  number: a.number,
+  title: a.title,
+  description: a.tagline,
+  image: a.image,
+  slug: a.slug,
+}))
 
 export default function Services() {
   const [active, setActive] = useState<number>(0)
@@ -110,9 +81,10 @@ export default function Services() {
             {services.map((service, i) => {
               const isActive = active === i
               return (
-                <div
+                <Link
                   key={service.number}
-                  className="border-t border-navy/10 cursor-pointer"
+                  href={`/practice-areas/${service.slug}`}
+                  className="block border-t border-navy/10"
                   onMouseEnter={() => setActive(i)}
                 >
                   <div className="py-7 flex items-center gap-6">
@@ -132,15 +104,12 @@ export default function Services() {
                       {service.title}
                     </h3>
 
-                    <motion.div
-                      animate={{ scale: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
-                      transition={{ duration: 0.35, ease: [0.215, 0.61, 0.355, 1] }}
-                      className="shrink-0 w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center"
-                    >
-                      <ArrowUpRight className="h-4 w-4 text-gold" />
-                    </motion.div>
+                    <div className="relative shrink-0 w-12 h-12 rounded-full border border-gold overflow-hidden flex items-center justify-center">
+                      <span className={`absolute inset-0 bg-gold transition-transform duration-300 ease-out ${isActive ? 'translate-x-0' : '-translate-x-[101%]'}`} />
+                      <ArrowUpRight className={`relative h-4 w-4 transition-colors duration-300 ${isActive ? 'text-white' : 'text-gold'}`} />
+                    </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
             <div className="border-t border-navy/10" />
@@ -193,15 +162,19 @@ export default function Services() {
         {/* Mobile — light divider list */}
         <div className="lg:hidden divide-y divide-navy/10">
           {services.map((service) => (
-            <div key={service.number} className="py-7">
+            <Link
+              key={service.number}
+              href={`/practice-areas/${service.slug}`}
+              className="block py-7 group"
+            >
               <span className="text-gold font-mono text-xs">{service.number}</span>
-              <h3 className="text-navy font-bold text-3xl mt-1 tracking-[-0.02em]">
+              <h3 className="text-navy font-bold text-3xl mt-1 tracking-[-0.02em] group-hover:text-gold transition-colors duration-300">
                 {service.title}
               </h3>
               <p className="text-navy/50 text-sm mt-3 leading-relaxed font-sans-ui">
                 {service.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
 

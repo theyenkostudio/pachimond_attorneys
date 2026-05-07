@@ -9,9 +9,10 @@ export const aboutQuery = groq`
       name,
       title,
       "imageUrl": image.asset->url,
-      image{
-        alt
-      }
+      bio,
+      email,
+      phone,
+      practiceAreas
     }
   }
 `;

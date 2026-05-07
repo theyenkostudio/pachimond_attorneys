@@ -1,23 +1,25 @@
 import HeadingSection from '@/components/about/HeadingSection'
-import ManagingDirectorMsg from '@/components/about/ManagingDirectorMsg'
+import AboutStats from '@/components/about/AboutStats'
 import StaffMembersSection from '@/components/about/StaffMembersSection'
+import FirmValues from '@/components/about/FirmValues'
+import ManagingDirectorMsg from '@/components/about/ManagingDirectorMsg'
 import { getAbout } from '@/sanity/lib/server-api'
 import { Metadata } from 'next'
-import React from 'react'
 
 export const metadata: Metadata = {
   title: 'About Us',
-};
-
+}
 
 export default async function About() {
   const aboutRes = await getAbout()
-  const about = aboutRes.data;
+  const about = aboutRes.data
   return (
     <div>
-        <HeadingSection about={about.about} />
-        <StaffMembersSection staffMembers={about.team}/>
-        <ManagingDirectorMsg message={about.message}/>
+      <HeadingSection about={about.about} />
+      <AboutStats />
+      <StaffMembersSection staffMembers={about.team} />
+      <FirmValues />
+      <ManagingDirectorMsg message={about.message} />
     </div>
   )
 }
