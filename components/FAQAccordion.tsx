@@ -1,32 +1,30 @@
-import React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { useFaqs } from "@/hooks/useSanityData";
-import { getFaqs } from "@/sanity/lib/server-api";
+} from '@/components/ui/accordion'
+import { getFaqs } from '@/sanity/lib/server-api'
 
 export default async function FAQAccordion() {
-const faqs = await getFaqs()
+  const faqs = await getFaqs()
 
   return (
-    <div className="lg:h-80 overflow-y-scroll scrollbar-none scrollbar-thin  scrollbar-thumb-[#009CFF] scrollbar-track-[#B6DEF8] [direction:rtl]">
-      <div className="[direction:ltr] lg:pl-4">
-        <Accordion type="single" collapsible>
-          {faqs.data?.map((faq: { question: string; answer: string }, i: number) => (
-            <AccordionItem key={i} value={i.toString()}>
-              <AccordionTrigger className="lg:text-lg font-semibold">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-    </div>
-  );
+    <Accordion type="single" collapsible>
+      {faqs.data?.map((faq: { question: string; answer: string }, i: number) => (
+        <AccordionItem
+          key={i}
+          value={i.toString()}
+          className="border-b border-navy/10"
+        >
+          <AccordionTrigger className="text-xl lg:text-2xl font-bold text-navy text-left py-7 hover:text-gold transition-colors duration-300 hover:no-underline [&>svg]:text-gold [&>svg]:shrink-0">
+            {faq.question}
+          </AccordionTrigger>
+          <AccordionContent className="text-navy/55 text-base leading-relaxed pb-8 font-sans-ui">
+            {faq.answer}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  )
 }

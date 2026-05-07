@@ -1,42 +1,33 @@
-"use client"
+'use client'
 
-import React from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import TestimonialCard from "./TestimonialCard";
-import { useTestimonials } from "@/hooks/useSanityData";
+} from '@/components/ui/carousel'
+import TestimonialCard from './TestimonialCard'
 
-export default function MobileCarousel() {
+type Testimonial = {
+  imageUrl: string
+  name: string
+  text: string
+  title: string
+}
 
-
-const { data: testimonials, isLoading, error } = useTestimonials()
-
-  if (isLoading) return <div>Loading testimonials...</div>
-  if (error) return <div>Error loading testimonials</div>
-  if (!testimonials) return null
-
-
+export default function MobileCarousel({ testimonials }: { testimonials: Testimonial[] }) {
   return (
-    <Carousel>
+    <Carousel opts={{ align: 'start' }}>
       <CarouselContent>
-        {testimonials.map((testimonial: { imageUrl: string; name: string; text: string; title: string; }, i: React.Key | null | undefined) => (
+        {testimonials.map((t, i) => (
           <CarouselItem key={i} className="md:basis-1/2">
-            <TestimonialCard
-              image={testimonial.imageUrl}
-              name={testimonial.name}
-              text={testimonial.text}
-              title={testimonial.title}
-            />
+            <TestimonialCard image={t.imageUrl} name={t.name} text={t.text} title={t.title} />
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden md:flex"/>
-      <CarouselNext className="hidden md:flex"/>
+      <CarouselPrevious className="hidden md:flex" />
+      <CarouselNext className="hidden md:flex" />
     </Carousel>
-  );
+  )
 }

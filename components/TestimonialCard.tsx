@@ -1,44 +1,26 @@
-
-import Image from "next/image";
-import React from "react";
-import { Playfair_Display } from "next/font/google";
-
-const playFair = Playfair_Display({ subsets: ["latin"], style: "normal" });
+import Image from 'next/image'
 
 type TestimonialCardProps = {
-  name: string;
-  image: string;
-  title: string;
-  text: string;
-};
+  name: string
+  image: string
+  title: string
+  text: string
+}
 
-export default function TestimonialCard({
-  name,
-  image,
-  title,
-  text,
-}: TestimonialCardProps) {
+export default function TestimonialCard({ name, image, title, text }: TestimonialCardProps) {
   return (
-    <div className="border  rounded-xl p-6 md:pt-12">
-      <div className="flex flex-col">
-        <p className={`${playFair.className} text-8xl rotate-180 w-fit text-[#232323] `}>,,</p>
-        <p className="text-[#232323] lg:text-lg">{text}</p>
-        <div className="flex gap-2 items-center mt-10">
-          <div className="border rounded-full p-1 w-fit border-[#0C5380]">
-            <Image
-              src={image}
-              width={56}
-              height={56}
-              alt={name}
-              className="rounded-full"
-            />
-          </div>
-          <div className="flex flex-col">
-            <p className="font-semibold">{name}</p>
-            <p className="text-gray-600">{title}</p>
-          </div>
+    <div className="bg-cream rounded-2xl p-8 flex flex-col h-full">
+      <p className="font-playfair text-6xl text-gold leading-none mb-4 select-none">&ldquo;</p>
+      <p className="text-navy/80 leading-relaxed flex-1">{text}</p>
+      <div className="flex items-center gap-3 mt-8 pt-6 border-t border-navy/10">
+        <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-gold/30">
+          <Image src={image} fill className="object-cover" alt={name} sizes="48px" />
+        </div>
+        <div>
+          <p className="font-semibold text-navy text-sm">{name}</p>
+          <p className="text-gray-400 text-sm">{title}</p>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,21 +1,15 @@
-import React from "react";
-import FAQAccordion from "./FAQAccordion";
-import Image from "next/image";
+import FAQAccordion from './FAQAccordion'
+import FAQHeading from './FAQHeading'
 
 export default function FAQSection() {
   return (
-    <section className="my-14 md:my-28">
-      <div className="max-w-7xl mx-auto py-10 md:py-20 ">
-        <div className="px-4 lg:grid lg:grid-cols-8">
-          <div className="lg:col-span-5">
-            <p className="font-bold text-2xl md:text-3xl lg:text-4xl mb-10 lg:mb-14">
-              Frequently Asked Questions
-            </p>
-            <FAQAccordion/>
-          </div>
-          <Image className="hidden lg:block rounded-xl lg:col-span-3 place-self-end" src='/faq.jpg' height={567} width={380} alt="faq-image" />
+    <section className="bg-white py-24 lg:py-36">
+      <div className="px-6 sm:px-10 lg:px-16">
+        <div className="lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-20 xl:gap-28 items-start">
+          <FAQHeading />
+          <FAQAccordion />
         </div>
       </div>
     </section>
-  );
+  )
 }
