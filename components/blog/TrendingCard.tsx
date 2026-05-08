@@ -1,18 +1,17 @@
-import { MoveUpRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { formatDate } from "@/utils/formatDate";
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
 type TrendingCardProps = {
-  title: string;
-  author: string;
-  timePosted: string;
-  imageUrl: string;
-  excerpt: string;
-  slug: string;
-  authorImageUrl?: string;
-};
+  title: string
+  author: string
+  timePosted: string
+  imageUrl: string
+  excerpt: string
+  slug: string
+  category?: string
+  authorImageUrl?: string
+}
 
 export default function TrendingCard({
   title,
@@ -20,49 +19,53 @@ export default function TrendingCard({
   timePosted,
   imageUrl,
   excerpt,
-  authorImageUrl,
   slug,
+  category,
 }: TrendingCardProps) {
-  const truncatedExcerpt =
-    excerpt.length > 400 ? excerpt.slice(0, 400).trim() + "…" : excerpt;
+  const formatted = timePosted
+    ? new Date(timePosted).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+    : ''
 
   return (
-    <div className="lg:grid lg:grid-cols-8">
-      <div className="relative w-full h-64 lg:h-96 xl:h-[583px] mb-3 lg:col-span-3">
+    <Link href={`/blog/${slug}`} className="group flex flex-col">
+
+      {/* Image */}
+      <div className="relative overflow-hidden mb-6 aspect-[3/2] w-full">
         <Image
           src={imageUrl}
-          alt={`${title} image`}
           fill
-          className="rounded-xl object-cover"
+          className="object-cover group-hover:scale-105 transition-transform duration-700"
+          alt={title}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
-      <div className="lg:col-span-5 lg:pl-6">
-        <h5 className="font-bold text-lg lg:text-xl xl:text-2xl">{title}</h5>
-        <p className="my-3 text-sm">{truncatedExcerpt}</p>
-        <Link
-          href={`/blog/${slug}`}
-          className="text-[#093F61] text-sm flex items-center font-bold"
-        >
-          Read more <MoveUpRight height={15} />
-        </Link>
-        <div className="mt-4">
-          <div className="flex gap-2 items-center">
-            <Image
-              src={authorImageUrl || "/avatar.jpg"}
-              width={56}
-              height={56}
-              alt={author}
-              className="rounded-full object-cover w-10 h-10 lg:w-12 lg:h-12"
-            />
-            <div className="flex flex-col">
-              <p className="font-semibold text-[#093F61]">{author}</p>
-              <p className="text-gray-600 text-xs lg:text-sm">
-                Blogged @ {formatDate(timePosted)}
-              </p>
-            </div>
-          </div>
-        </div>
+
+      {/* Category */}
+      {category && (
+        <p className="text-gold text-[10px] tracking-[0.25em] uppercase font-sans-ui mb-3">
+          {category}
+        </p>
+      )}
+
+      {/* Title */}
+      <h3 className="text-navy font-bold text-2xl lg:text-3xl leading-tight tracking-[-0.02em] mb-4 group-hover:text-gold transition-colors duration-300 flex-1">
+        {title}
+      </h3>
+
+      {/* Excerpt */}
+      <p className="text-navy/50 text-base leading-relaxed font-sans-ui line-clamp-2 mb-6">
+        {excerpt}
+      </p>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between mt-auto">
+        <p className="text-navy/30 text-xs font-sans-ui tracking-wide">{formatted}</p>
+        <span className="relative w-11 h-11 rounded-full border border-gold overflow-hidden flex items-center justify-center shrink-0">
+          <span className="absolute inset-0 bg-gold -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+          <ArrowUpRight className="relative h-3.5 w-3.5 text-gold group-hover:text-white transition-colors duration-300" />
+        </span>
       </div>
-    </div>
-  );
+
+    </Link>
+  )
 }

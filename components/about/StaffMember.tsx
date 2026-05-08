@@ -44,8 +44,8 @@ export default function StaffMember({
         </p>
         <p className="text-navy/45 text-xs font-sans-ui mt-1 uppercase tracking-[0.12em]">{job}</p>
 
-        {/* Expandable on hover */}
-        <div className="max-h-0 group-hover:max-h-[220px] overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)]">
+        {/* Expandable: hover on desktop, isSelected on mobile */}
+        <div className={`overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] ${isSelected ? 'max-h-[220px]' : 'max-h-0 group-hover:max-h-[220px]'}`}>
           <div className="border-t border-navy/8 mt-4 pt-4">
             {bio && (
               <p className="text-navy/50 text-xs leading-relaxed font-sans-ui line-clamp-3 mb-3">

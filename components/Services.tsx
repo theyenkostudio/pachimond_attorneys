@@ -23,7 +23,7 @@ export default function Services() {
   const headerInView = useInView(headerRef, { once: true, margin: '-80px' })
 
   return (
-    <section className="bg-white py-24 lg:py-36 overflow-hidden">
+    <section id="services" className="bg-white py-24 lg:py-36 overflow-hidden">
       <div className="px-6 sm:px-10 lg:px-16">
 
         {/* Header — mask reveal + subtitle */}

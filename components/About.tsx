@@ -2,6 +2,8 @@
 
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { AnimatedCounter } from "./motion/AnimatedCounter";
 
@@ -115,6 +117,21 @@ export default function About() {
               approach, ensuring you feel supported, informed, and fiercely
               represented at every step.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+            >
+              <Link
+                href="#services"
+                className="group inline-flex items-center gap-3 mt-8 text-sm font-medium uppercase tracking-wide text-navy border-b border-navy/20 pb-1 hover:border-navy transition-colors duration-300"
+              >
+                Explore Practice Areas
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -2,19 +2,15 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 
-const HEADING_LINES = ['Your trusted partner', 'in every legal journey.']
+const HEADING_LINES = ['From the', 'legal desk.']
 
-export default function HeadingSection({ about }: { about: string }) {
+export default function BlogPageHeading() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section className="bg-cream py-24 lg:py-36 px-6 sm:px-10 lg:px-16">
-
-      {/* Editorial bar */}
+    <div className="mb-14 lg:mb-20">
       <motion.div
         className="flex items-center gap-3 mb-10"
         initial={{ opacity: 0 }}
@@ -23,12 +19,11 @@ export default function HeadingSection({ about }: { about: string }) {
       >
         <div className="w-5 h-px bg-gold" />
         <span className="text-gold text-[10px] tracking-[0.28em] uppercase font-sans-ui">
-          About Us
+          Our Blog
         </span>
       </motion.div>
 
-      {/* Heading — mask reveal */}
-      <div ref={ref} className="mb-14 lg:mb-20">
+      <div ref={ref}>
         <h1 className="text-[11vw] sm:text-[8.5vw] lg:text-[6.5vw] font-bold text-navy leading-[0.92] tracking-[-0.03em]">
           {HEADING_LINES.map((line, i) => (
             <div key={i} className="overflow-hidden">
@@ -49,33 +44,12 @@ export default function HeadingSection({ about }: { about: string }) {
         </h1>
       </div>
 
-      {/* Divider */}
       <motion.div
-        className="h-px bg-navy/10 origin-left mb-14 lg:mb-20"
+        className="h-px bg-navy/10 origin-left mt-14"
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
         transition={{ duration: 0.9, delay: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
       />
-
-      {/* About text + CTA */}
-      <motion.div
-        className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8"
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{ duration: 0.8, delay: 0.65, ease: 'easeOut' }}
-      >
-        <p className="text-navy/60 text-lg lg:text-xl leading-relaxed font-sans-ui max-w-2xl">
-          {about}
-        </p>
-        <Link
-          href="/#services"
-          className="group inline-flex items-center gap-3 shrink-0 text-sm font-medium uppercase tracking-wide text-navy border-b border-navy/20 pb-1 hover:border-navy transition-colors duration-300"
-        >
-          Practice Areas
-          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-        </Link>
-      </motion.div>
-
-    </section>
+    </div>
   )
 }

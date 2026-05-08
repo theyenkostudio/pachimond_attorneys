@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function ManagingDirectorMsg({ message }: { message: string }) {
   return (
-    <section className="bg-cream py-24 lg:py-36 px-6 sm:px-10 lg:px-16">
+    <section className="bg-white py-24 lg:py-36 px-6 sm:px-10 lg:px-16">
       <div className="max-w-3xl">
 
         {/* Label */}
@@ -45,33 +45,37 @@ export default function ManagingDirectorMsg({ message }: { message: string }) {
           {message}
         </motion.p>
 
-        {/* Attribution */}
-        <motion.div
-          className="flex items-center gap-4 mt-12 pt-10 border-t border-navy/10"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' }}
-        >
-          <div className="relative w-14 h-14 shrink-0 overflow-hidden rounded-full">
-            <Image
-              src="/testimonials/amarachi.jpg"
-              fill
-              alt="Glory Ovia Ovrampor"
-              className="object-cover object-top"
-            />
-          </div>
-          <div>
-            <p className="font-bold text-navy text-base leading-tight tracking-[-0.01em]">
-              Glory Ovia Ovrampor
-            </p>
-            <p className="text-navy/45 text-sm font-sans-ui mt-0.5">
-              Managing Partner &amp; Founder
-            </p>
-          </div>
-        </motion.div>
-
       </div>
+
+      {/* Full-width divider */}
+      <div className="border-t border-navy/10 mt-12" />
+
+      {/* Attribution */}
+      <motion.div
+        className="flex items-center gap-4 pt-10 max-w-3xl"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' }}
+      >
+        <div className="relative w-14 h-14 shrink-0 overflow-hidden rounded-full">
+          <Image
+            src="/testimonials/amarachi.jpg"
+            fill
+            alt="Glory Ovia Ovrampor"
+            className="object-cover object-top"
+          />
+        </div>
+        <div>
+          <p className="font-bold text-navy text-base leading-tight tracking-[-0.01em]">
+            Glory Ovia Ovrampor
+          </p>
+          <p className="text-navy/45 text-sm font-sans-ui mt-0.5">
+            Managing Partner &amp; Founder
+          </p>
+        </div>
+      </motion.div>
+
     </section>
   )
 }
