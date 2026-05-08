@@ -45,9 +45,9 @@ export default function HeroSection() {
             Port Harcourt, Nigeria
           </span>
         </div>
-        {/* <span className="text-white/40 text-[10px] tracking-[0.28em] uppercase font-sans-ui">
+        <span className="text-white/40 text-[10px] tracking-[0.28em] uppercase font-sans-ui">
           Est. 2019
-        </span> */}
+        </span>
       </motion.div>
 
       {/* Headline — mask reveal */}
