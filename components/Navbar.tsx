@@ -18,7 +18,7 @@ export default function Navbar() {
   const hasDarkHero =
     pathname === "/" ||
     pathname.startsWith("/practice-areas") ||
-    pathname === "/blog";
+    pathname.startsWith("/blog");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
