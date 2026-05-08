@@ -1,8 +1,3 @@
-import CustomCursor from "@/components/CustomCursor";
-import { Footer } from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import { CursorProvider } from "@/components/providers/CursorContext";
-import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { QueryProvider } from "@/components/QueryProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { SanityLive } from "@/sanity/lib/live";
@@ -85,17 +80,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className="font-sans">
         <QueryProvider>
-          <CursorProvider>
-          <CustomCursor />
-          <SmoothScrollProvider>
-            <Toaster />
-            <Navbar />
-            {children}
-            <SanityLive />
-            {(await draftMode()).isEnabled && <VisualEditing />}
-            <Footer />
-          </SmoothScrollProvider>
-          </CursorProvider>
+          <Toaster />
+          {children}
+          <SanityLive />
+          {(await draftMode()).isEnabled && <VisualEditing />}
         </QueryProvider>
       </body>
     </html>

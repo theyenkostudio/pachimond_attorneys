@@ -17,7 +17,6 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { Button } from "../ui/button";
 import {
   Select,
   SelectContent,
@@ -41,11 +40,14 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+const labelClass = "text-[10px] font-sans-ui tracking-[0.18em] uppercase text-navy/50 font-normal";
+const inputClass = "rounded-none border-navy/20 bg-transparent focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-0 font-sans-ui text-navy placeholder:text-navy/30";
+
 export default function ContactFeedbackForm() {
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [loading, setLoading] = useState(false);
-  
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -79,9 +81,7 @@ export default function ContactFeedbackForm() {
 
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
@@ -92,7 +92,7 @@ export default function ContactFeedbackForm() {
       } else {
         throw new Error("Failed to send message");
       }
-    } catch (error) {
+    } catch {
       toast("Failed to send message. Please try again.");
     } finally {
       setLoading(false);
@@ -100,196 +100,177 @@ export default function ContactFeedbackForm() {
   };
 
   return (
-    <div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Request Type Selector */}
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+
+        {/* Request Type */}
+        <FormField
+          control={form.control}
+          name="request_type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className={labelClass}>
+                Nature of your request
+              </FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="rounded-none border-navy/20 font-sans-ui text-navy focus:ring-1 focus:ring-gold focus:ring-offset-0">
+                    <SelectValue placeholder="Select request type" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent className="rounded-none font-sans-ui">
+                  <SelectItem value="contact">Contact / Inquiry</SelectItem>
+                  <SelectItem value="feedback">Feedback</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage className="text-xs font-sans-ui" />
+            </FormItem>
+          )}
+        />
+
+        {/* Name + Contact grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField
             control={form.control}
-            name="request_type"
+            name="first_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">
-                  What is the nature of your request?
-                </FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select request type" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="contact">Contact/Inquiry</SelectItem>
-                    <SelectItem value="feedback">Feedback</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
+                <FormLabel className={labelClass}>First name</FormLabel>
+                <FormControl>
+                  <Input placeholder="First name" className={inputClass} {...field} type="text" />
+                </FormControl>
+                <FormMessage className="text-xs font-sans-ui" />
               </FormItem>
             )}
           />
-
-          {/* Name and Contact Fields */}
-          <div className="mb-3 lg:mb-0 space-y-3 lg:space-y-0 grid lg:grid-cols-2 lg:gap-4">
-            <FormField
-              control={form.control}
-              name="first_name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold">First name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your first name"
-                      {...field}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="last_name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold">Last name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your last name"
-                      {...field}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="phone"
-              render={() => (
-                <FormItem>
-                  <FormLabel className="font-semibold">Phone number</FormLabel>
-                  <FormControl>
-                    <PhoneInputWithCountry
-                      name="phone"
-                      control={form.control}
-                      rules={{ required: "Phone number is required" }}
-                      defaultCountry="NG"
-                      placeholder="Enter phone number"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold">Email address</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your email address"
-                      {...field}
-                      type="email"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          {/* Rating Section - Only shows for feedback */}
-          {isFeedback && (
-            <FormField
-              control={form.control}
-              name="rating"
-              render={() => (
-                <FormItem>
-                  <FormLabel className="font-semibold">
-                    How would you rate your experience?
-                  </FormLabel>
-                  <FormControl>
-                    <div className="flex items-center space-x-1">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <button
-                          key={star}
-                          type="button"
-                          className="focus:outline-none transition-colors duration-200"
-                          onClick={() => handleStarClick(star)}
-                          onMouseEnter={() => setHoveredRating(star)}
-                          onMouseLeave={() => setHoveredRating(0)}
-                        >
-                          <Star
-                            className={`h-8 w-8 ${
-                              star <= (hoveredRating || rating)
-                                ? "fill-yellow-400 text-yellow-400"
-                                : "text-gray-300 hover:text-yellow-300"
-                            } transition-colors duration-200`}
-                          />
-                        </button>
-                      ))}
-                      {rating > 0 && (
-                        <span className="ml-2 text-sm text-gray-600">
-                          {rating} out of 5 stars
-                        </span>
-                      )}
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
-
-          {/* Message Field */}
           <FormField
             control={form.control}
-            name="message"
+            name="last_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">
-                  {isFeedback ? "Your feedback" : "Enter your message"}
-                </FormLabel>
+                <FormLabel className={labelClass}>Last name</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder={
-                      isFeedback
-                        ? "Share your feedback with us..."
-                        : "Enter your message"
-                    }
-                    className="resize-none w-full min-h-[120px]"
-                    {...field}
+                  <Input placeholder="Last name" className={inputClass} {...field} type="text" />
+                </FormControl>
+                <FormMessage className="text-xs font-sans-ui" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={() => (
+              <FormItem>
+                <FormLabel className={labelClass}>Phone number</FormLabel>
+                <FormControl>
+                  <PhoneInputWithCountry
+                    name="phone"
+                    control={form.control}
+                    rules={{ required: "Phone number is required" }}
+                    defaultCountry="NG"
+                    placeholder="Phone number"
+                    className="flex h-10 w-full border border-navy/20 bg-transparent px-3 py-2 text-sm font-sans-ui text-navy placeholder:text-navy/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold disabled:cursor-not-allowed disabled:opacity-50"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs font-sans-ui" />
               </FormItem>
             )}
           />
-
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full mt-10 bg-gradient-to-r from-[#093F61] to-[#009CFF] text-white p-5 text-base font-semibold rounded-lg inline-flex items-center gap-2 hover:from-[#0a4a75] hover:to-[#00a8ff] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <>
-                <SyncLoader size={6} color="white" />
-                <span>Sending</span>
-              </>
-            ) : (
-              <>
-                <Send className="h-5 w-5" />
-                {isFeedback ? "Send Feedback" : "Send Message"}
-              </>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className={labelClass}>Email address</FormLabel>
+                <FormControl>
+                  <Input placeholder="Email address" className={inputClass} {...field} type="email" />
+                </FormControl>
+                <FormMessage className="text-xs font-sans-ui" />
+              </FormItem>
             )}
-          </Button>
-        </form>
-      </Form>
-    </div>
+          />
+        </div>
+
+        {/* Star rating — feedback only */}
+        {isFeedback && (
+          <FormField
+            control={form.control}
+            name="rating"
+            render={() => (
+              <FormItem>
+                <FormLabel className={labelClass}>Rate your experience</FormLabel>
+                <FormControl>
+                  <div className="flex items-center gap-1 pt-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        className="focus:outline-none"
+                        onClick={() => handleStarClick(star)}
+                        onMouseEnter={() => setHoveredRating(star)}
+                        onMouseLeave={() => setHoveredRating(0)}
+                      >
+                        <Star
+                          className={`h-7 w-7 transition-colors duration-200 ${
+                            star <= (hoveredRating || rating)
+                              ? "fill-gold text-gold"
+                              : "text-navy/20 hover:text-gold/50"
+                          }`}
+                        />
+                      </button>
+                    ))}
+                    {rating > 0 && (
+                      <span className="ml-3 text-xs font-sans-ui text-navy/50">
+                        {rating} / 5
+                      </span>
+                    )}
+                  </div>
+                </FormControl>
+                <FormMessage className="text-xs font-sans-ui" />
+              </FormItem>
+            )}
+          />
+        )}
+
+        {/* Message */}
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className={labelClass}>
+                {isFeedback ? "Your feedback" : "Your message"}
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder={isFeedback ? "Share your feedback..." : "How can we help you?"}
+                  className={`${inputClass} resize-none min-h-[120px]`}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="text-xs font-sans-ui" />
+            </FormItem>
+          )}
+        />
+
+        {/* Submit */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="group relative overflow-hidden w-full border border-navy text-navy mt-2 px-8 py-4 text-[10px] font-sans-ui tracking-[0.22em] uppercase inline-flex items-center justify-center gap-3 transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span className="absolute inset-0 bg-gold -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)]" />
+          <span className="relative group-hover:text-white transition-colors duration-300 flex items-center gap-3">
+            {loading ? (
+              <SyncLoader size={4} color="#0D1B2A" />
+            ) : (
+              <Send className="h-4 w-4" />
+            )}
+            {loading ? 'Sending...' : isFeedback ? 'Send Feedback' : 'Send Message'}
+          </span>
+        </button>
+
+      </form>
+    </Form>
   );
 }
